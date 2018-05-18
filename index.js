@@ -17,11 +17,12 @@ app.get('/send',function (req, res) {
         if(err){
             return res.send(err)
         }
-        var sql = `INSERT INTO api_mt_9902 (mobiles,content) VALUES (${req.query.phone},${req.query.code})`
+        var sql = `INSERT INTO api_mt_9902 (mobiles,content) VALUES (${req.query.phone},"${req.query.code}")`
 
+				console.log(sql)
         connection.query(sql, function (error, results, fields) {
             // And done with the connection.
-            connection.release();
+						connection.release();
             res.send('ok')
             // Handle error after the release.
             if (error) throw error;
